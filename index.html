@@ -61,32 +61,30 @@
       margin-bottom: 10px;
     }
 
-    .lang-switch{
-      position: absolute;
-      top: 14px;
-      right: 14px;
-      display: inline-flex;
-      gap: 8px;
-      align-items: center;
+     .lang{
+      display:inline-flex;
+      gap:8px;
       padding: 6px;
-      border-radius: 999px;
       border: 1px solid var(--border);
-      background: rgba(10, 20, 40, 0.45);
-      box-shadow: 0 10px 25px rgba(0,0,0,.15);
+      border-radius: 999px;
+      background: rgba(10,20,40,.55);
+      box-shadow: 0 10px 25px rgba(0,0,0,.25);
+      backdrop-filter: blur(8px);
     }
-    .lang-btn{
-      border: 1px solid transparent;
+    .lang button{
+      border: 0;
       background: transparent;
       color: var(--text);
+      padding: 8px 12px;
+      border-radius: 999px;
       cursor: pointer;
       font-weight: 800;
-      padding: 6px 10px;
-      border-radius: 999px;
       letter-spacing: .2px;
     }
-    .lang-btn.active{
-      background: rgba(120,190,255,.22);
-      border-color: rgba(120,190,255,.35);
+    .lang button.active{
+      background: rgba(255,140,40,.22);
+      border: 1px solid rgba(255,180,90,.35);
+    }
 
     .top{
       display:flex;
