@@ -74,7 +74,7 @@
       background: rgba(10, 20, 40, 0.45);
       box-shadow: 0 10px 25px rgba(0,0,0,.15);
     }
-    .lang-button{
+    .lang-btn{
       border: 1px solid transparent;
       background: transparent;
       color: var(--text);
@@ -84,10 +84,9 @@
       border-radius: 999px;
       letter-spacing: .2px;
     }
-    .lang-button.active{
+    .lang-btn.active{
       background: rgba(120,190,255,.22);
       border-color: rgba(120,190,255,.35);
-    }
 
     .top{
       display:flex;
@@ -346,10 +345,10 @@
     <div class="top">
       <div class="brand">
         
-        <div class="lang" aria-label="Language switch">
-        <button id="btnFR" class="active" type="button" onclick="setLang('fr')">FR</button>
-        <button id="btnEN" type="button" onclick="setLang('en')">EN</button>
-      </div>
+        <div class="lang-switch" aria-label="Language switch">
+          <button class="lang-btn" id="btnFR" type="button">FR</button>
+          <button class="lang-btn" id="btnEN" type="button">EN</button>
+        </div>
         
         <h1 class="logo">          
           <img src="logoJL.jpg" alt="Les Constructions JLebeau">
