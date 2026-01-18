@@ -290,6 +290,23 @@
       text-decoration: none;
       font-weight: 900;
     }
+    
+    /* ===== FIX LISIBILITÉ DESKTOP (.side) ===== */
+@media (min-width: 821px){
+  .side::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    background: rgba(0,0,0,.55); /* PLUS sombre que DanPC */
+    border-radius: var(--radius);
+    z-index: 0;
+  }
+
+  .side > *{
+    position: relative;
+    z-index: 1;
+  }
+}
 
     /* Mobile */
     @media (max-width: 820px){
