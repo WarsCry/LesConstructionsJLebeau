@@ -106,6 +106,23 @@
       position: relative;
       overflow: hidden;
     }
+    /* Le switch FR/EN dans la carte, en haut à droite */
+     .brand .lang{
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      z-index: 2;
+
+      display: inline-flex;
+      gap: 8px;
+      padding: 6px;
+
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: rgba(10,20,40,.55);
+      box-shadow: 0 10px 25px rgba(0,0,0,.25);
+      backdrop-filter: blur(8px);
+    }
 
     .brand::after{
       content:"";
@@ -335,10 +352,7 @@
   </div>
 
   <div class="wrap">
-    <div class="topbar">
-    
-      </div>
-    </div>
+    <div class="topbar">  
 
     <div class="top">
       <div class="brand">
