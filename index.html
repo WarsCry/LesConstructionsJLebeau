@@ -102,6 +102,7 @@
       flex: 1 1 520px;
       position: relative;
       overflow: hidden;
+      z-index: 0;
     }
     /* Le switch FR/EN dans la carte, en haut à droite */
     .brand .lang{
@@ -110,16 +111,14 @@
       right:14px;
       z-index:2;
      }
-
       display: inline-flex;
       gap: 8px;
       padding: 6px;
-
       border: 1px solid var(--border);
       border-radius: 999px;
       background: rgba(10,20,40,.55);
       box-shadow: 0 10px 25px rgba(0,0,0,.25);
-      backdrop-filter: blur(8px);
+      backdrop-filter: blur(8px);    
     }
 
     .brand::after{
@@ -128,6 +127,7 @@
       inset:-40px;
       background: radial-gradient(circle at 15% 20%, rgba(255,140,40,.18), transparent 45%);
       pointer-events:none;
+      z-index: 0;
     }
 
     .logo{
