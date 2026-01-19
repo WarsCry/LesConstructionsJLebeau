@@ -161,27 +161,37 @@
       z-index: 1;
     }
 
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      gap:10px;
-      padding: 10px 14px;
-      border-radius: 999px;
-      border: 1px solid var(--border);
-      background: rgba(10, 20, 40, 0.55);
-      color: var(--text);
-      text-decoration: none;
-      font-weight: 750;
-      box-shadow: 0 10px 25px rgba(0,0,0,.25);
-      cursor:pointer;
-    }
-    .btn:hover{ border-color: rgba(255,180,90,.45); transform: translateY(-1px); }
-    .btn.primary{
-      background: linear-gradient(90deg, rgba(255,140,40,.90), rgba(255,210,120,.55));
-      border-color: rgba(255,210,120,.35);
-      color: rgba(5,10,22,.92);
-    }
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  min-height: 44px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  border: 1px solid rgba(255,180,90,.28);
+  background: rgba(10, 20, 40, 0.55); /* IDENTIQUE pour tous */
+  color: rgba(240,248,255,.92);
+  text-decoration: none;
+  font-weight: 850;
+  letter-spacing: .2px;
+  line-height: 1;
+  box-shadow: 0 10px 25px rgba(0,0,0,.25);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px)
+  transition: transform .12s ease, border-color .12s ease, background .12s ease;
+}
+.btn:hover{
+  transform: translateY(-1px);
+  border-color: rgba(255,180,90,.48);
+  background: rgba(10, 20, 40, 0.62);
+}
+/* Accent optionnel (si tu veux “Courriel” un peu plus important mais même vibe) */
+.btn.primary{
+  border-color: rgba(255,210,120,.55);
+  background: rgba(255,140,40,.18);   /* PAS de gradient */
+  color: rgba(240,248,255,.95);
+}
 
     .punch{
       margin-top: 10px;
