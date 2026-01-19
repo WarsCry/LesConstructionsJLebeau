@@ -468,35 +468,53 @@
         </div>
 
         <div class="cta">
-  <a class="btn" href="#" onclick="emailClick(event)">✉️ Courriel</a>
-  <a class="btn" href="https://www.facebook.com/profile.php?id=100090440046771"
+  <!-- Courriel -->
+  <a class="btn" href="#" onclick="emailClick(event)">
+    ✉️ <span data-i18n="btnEmail">Courriel</span>
+  </a>
+
+  <!-- Facebook -->
+  <a class="btn"
+     href="https://www.facebook.com/profile.php?id=100090440046771"
      target="_blank" rel="noreferrer">
-    📘 Facebook
+    📘 <span data-i18n="btnFacebook">Facebook</span>
   </a>
-  <a class="btn" href="https://m.me/100090440046771"
+
+  <!-- Messenger -->
+  <a class="btn"
+     href="https://m.me/100090440046771"
      target="_blank" rel="noreferrer">
-    💬 Messenger
+    💬 <span data-i18n="btnMessenger">Messenger</span>
   </a>
-  <a class="btn" href="tel:+14505125545">📞 Appeler</a>
-  <a class="btn" href="sms:+14505125545?body=Bonjour%20JLebeau%20🙂%0A%0AJ’aimerais%20une%20soumission%20pour%20:">
-    📩 SMS
+
+  <!-- Appeler -->
+  <a class="btn" href="tel:+14505125545">
+    📞 <span data-i18n="btnCall">Appeler</span>
   </a>
- 
-    <a class="btn primary"
-   href="mailto:lesconstructionsjlebeau@gmail.com
+
+  <!-- SMS -->
+  <a class="btn"
+     href="sms:+14505125545?body=Bonjour%20JLebeau%20🙂%0A%0AJ’aimerais%20une%20soumission%20pour%20:">
+    📩 <span data-i18n="btnSMS">SMS</span>
+  </a>
+
+  <!-- SOUMISSION (CTA principal) -->
+  <a class="btn primary"
+     href="mailto:lesconstructionsjlebeau@gmail.com
 ?subject=Demande%20de%20soumission
 &body=Bonjour%20JLebeau,%0A%0A
 Type%20de%20travaux:%20Revêtement%20extérieur%0A
 Type%20de%20revêtement:%20(Vinyle,%20CanExel,%20Fibrociment,%20Autre)%0A
 Surface%20approximative%20(pieds%20carrés):%0A
 Adresse%20ou%20ville:%0A
-Téléphone%20ou%20:%0A
+Téléphone:%0A
 Photos%20(jointes):%0A
 Délais%20souhaités:%0A%0A
 Merci!">
-📝 Soumission
-</a>
-</div>      
+    📝 <span data-i18n="btnQuote">Soumission</span>
+  </a>
+</div>
+    
 
         <div class="punch" data-i18n="punch">
           Soumission rapide. Travail bien fait.
@@ -617,7 +635,14 @@ Merci!">
         mailPrompt: "Es-tu sûr de vouloir envoyer un courriel? 😏",
         mailContinue: "Continuer",
         mailCancel: "Annuler"
+        btnEmail: "Courriel",
+        btnFacebook: "Facebook",
+        btnMessenger: "Messenger",
+        btnCall: "Appeler",
+        btnSMS: "SMS",
+        btnQuote: "Soumission",
       },
+      
       en: {
         tagline: "🧱Construction & renovation🔨 — clean work, solid results.",
         email: "Email",
@@ -653,6 +678,12 @@ Merci!">
         mailPrompt: "Are you sure you want to send an email? 😏",
         mailContinue: "Continue",
         mailCancel: "Cancel"
+        btnEmail: "Email",
+        btnFacebook: "Facebook",
+        btnMessenger: "Messenger",
+        btnCall: "Call",
+        btnSMS: "Text",
+        btnQuote: "Get a quote",
       }
     };
 
