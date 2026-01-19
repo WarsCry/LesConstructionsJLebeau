@@ -433,6 +433,123 @@
       .side{ flex: 1 1 320px; }
       .logo img{ height: 192px; }
     }
+  
+    /* ===== RÉALISATIONS (BOUTON + POPUP) ===== */
+    .real-wrap{
+      display:flex;
+      justify-content:center;
+      margin: 22px 0 12px;
+    }
+
+    .real-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:10px;
+      min-height: 46px;
+      padding: 14px 28px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,210,120,.45);
+      background: linear-gradient(90deg, rgba(255,140,40,.95), rgba(255,210,120,.65));
+      color: rgba(5,10,22,.95);
+      text-decoration: none;
+      font-weight: 900;
+      letter-spacing: .2px;
+      cursor: pointer;
+      box-shadow: 0 14px 30px rgba(0,0,0,.45), inset 0 1px 0 rgba(255,255,255,.18);
+      transition: transform .12s ease, filter .12s ease, box-shadow .12s ease;
+    }
+    .real-btn:hover{
+      transform: translateY(-1px);
+      filter: brightness(1.03);
+      box-shadow: 0 18px 36px rgba(0,0,0,.55), inset 0 1px 0 rgba(255,255,255,.22);
+    }
+
+    .real-modal{
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.85);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      z-index: 99999;
+      padding: 16px;
+    }
+
+    .real-box{
+      width: 100%;
+      max-width: 1100px;
+      margin: 2vh auto;
+      background: rgba(10, 20, 40, 0.96);
+      border: 1px solid rgba(255,180,90,.25);
+      border-radius: 18px;
+      padding: 18px;
+      box-shadow: 0 22px 55px rgba(0,0,0,.65);
+      backdrop-filter: blur(10px);
+    }
+
+    .real-head{
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .real-head h2{
+      margin: 0;
+      font-size: 18px;
+      letter-spacing: .2px;
+    }
+
+    .real-close{
+      border: 1px solid rgba(255,180,90,.35);
+      background: rgba(255,255,255,.06);
+      color: rgba(255,255,255,.9);
+      width: 42px;
+      height: 42px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-size: 22px;
+      font-weight: 900;
+      line-height: 1;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+    }
+
+    .real-gallery{
+      margin-top: 10px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 14px;
+    }
+
+    .real-gallery img{
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid rgba(255,180,90,.15);
+      box-shadow: 0 10px 25px rgba(0,0,0,.30);
+      cursor: pointer;
+      transition: transform .12s ease;
+      background: rgba(255,255,255,.04);
+    }
+
+    .real-gallery img:hover{
+      transform: scale(1.01);
+    }
+
+    @media (max-width: 600px){
+      .real-wrap{ margin: 18px 0 6px; }
+      .real-btn{ width: 100%; max-width: 520px; }
+      .real-gallery{ grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      .real-btn, .real-gallery img{ transition: none; }
+      .real-gallery img:hover{ transform:none; }
+    }
+
   </style>
 </head>
 
@@ -444,7 +561,21 @@
       <div class="modal-actions">
         <button type="button" onclick="closeModal()">Annuler</button>
         <a id="mailLink" href="mailto:lesconstructionsjlebeau@gmail.com" class="confirm">Continuer</a>
+      
+  <!-- MODAL Réalisations -->
+  <div id="realModal" class="real-modal" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="real-box" role="document">
+      <div class="real-head">
+        <h2>🧱 <span data-i18n="realTitle">Mes réalisations</span></h2>
+        <button id="closeRealisations" class="real-close" type="button" aria-label="Fermer">×</button>
       </div>
+
+      <div class="real-gallery" id="realGallery"></div>
+    </div>
+  </div>
+
+
+</div>
     </div>
   </div>
 
@@ -529,7 +660,15 @@ Merci!">
           <span data-i18n="emailHint">réponse rapide, soumissions</span>
         </div>
       </div>
+    
+    <!-- BOUTON RÉALISATIONS -->
+    <div class="real-wrap">
+      <button id="openRealisations" class="real-btn" type="button">
+        👀 <span data-i18n="realBtn">Sois pas gêné — viens voir mes réalisations</span>
+      </button>
     </div>
+
+</div>
 
     <div class="grid">
       <section class="card card-siding">
@@ -641,6 +780,9 @@ Merci!">
         btnCall: "Appeler",
         btnSMS: "Texto",
         btnQuote: "Soumission",
+        realBtn: "Sois pas gêné — viens voir mes réalisations",
+        realTitle: "Mes réalisations",
+
       },
       
       en: {
@@ -684,6 +826,9 @@ Merci!">
         btnCall: "Call",
         btnSMS: "Text",
         btnQuote: "Get a quote",
+        realBtn: "Don’t be shy — check out my work",
+        realTitle: "My work",
+
       }
     };
 
