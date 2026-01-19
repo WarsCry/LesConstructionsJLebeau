@@ -433,7 +433,7 @@
       .side{ flex: 1 1 320px; }
       .logo img{ height: 192px; }
     }
-  
+
     /* ===== RÉALISATIONS (BOUTON + POPUP) ===== */
     .real-wrap{
       display:flex;
@@ -469,7 +469,7 @@
       position: fixed;
       inset: 0;
       background: rgba(0,0,0,.85);
-      display: none;
+      display: none;              /* hidden by default */
       align-items: center;
       justify-content: center;
       z-index: 99999;
@@ -561,7 +561,9 @@
       <div class="modal-actions">
         <button type="button" onclick="closeModal()">Annuler</button>
         <a id="mailLink" href="mailto:lesconstructionsjlebeau@gmail.com" class="confirm">Continuer</a>
-      
+      </div>
+    </div>
+  
   <!-- MODAL Réalisations -->
   <div id="realModal" class="real-modal" role="dialog" aria-modal="true" aria-hidden="true">
     <div class="real-box" role="document">
@@ -574,10 +576,7 @@
     </div>
   </div>
 
-
 </div>
-    </div>
-  </div>
 
   <div class="wrap">
     <div class="topbar"></div>  
@@ -660,7 +659,6 @@ Merci!">
           <span data-i18n="emailHint">réponse rapide, soumissions</span>
         </div>
       </div>
-    
     <!-- BOUTON RÉALISATIONS -->
     <div class="real-wrap">
       <button id="openRealisations" class="real-btn" type="button">
@@ -668,7 +666,7 @@ Merci!">
       </button>
     </div>
 
-</div>
+    </div>
 
     <div class="grid">
       <section class="card card-siding">
@@ -826,9 +824,6 @@ Merci!">
         btnCall: "Call",
         btnSMS: "Text",
         btnQuote: "Get a quote",
-        realBtn: "Don’t be shy — check out my work",
-        realTitle: "My work",
-
       }
     };
 
@@ -891,6 +886,71 @@ Merci!">
     document.getElementById("confirmMail").addEventListener("click", (e)=>{
       if (e.target.id === "confirmMail") closeModal();
     });
+    // ===== RÉALISATIONS (BOUTON + POPUP) =====
+    // Config: change number of photos + extension if needed
+    const REALISATIONS_COUNT = 12;         // ex: 12 ou 30
+    const REALISATIONS_EXT = "jpg";        // "jpg" ou "png" ou "webp"
+    const REALISATIONS_PATH = "images";    // dossier
+
+    const realModal = document.getElementById("realModal");
+    const openReals = document.getElementById("openRealisations");
+    const closeReals = document.getElementById("closeRealisations");
+    const realGallery = document.getElementById("realGallery");
+
+    function openRealisations(){
+      if (!realModal) return;
+      realModal.style.display = "flex";
+      realModal.setAttribute("aria-hidden","false");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeRealisations(){
+      if (!realModal) return;
+      realModal.style.display = "none";
+      realModal.setAttribute("aria-hidden","true");
+      document.body.style.overflow = "";
+    }
+
+    // Build gallery once (loads images/projetJL1.jpg ... projetJL12.jpg)
+    (function buildRealisations(){
+      if (!realGallery) return;
+      realGallery.innerHTML = "";
+
+      for (let i = 1; i <= REALISATIONS_COUNT; i++){
+        const img = document.createElement("img");
+        img.loading = "lazy";
+        img.decoding = "async";
+        img.src = `${REALISATIONS_PATH}/projetJL${i}.${REALISATIONS_EXT}`;
+        img.alt = `Projet JL ${i}`;
+        img.onerror = () => { img.style.display = "none"; }; // hide missing
+        realGallery.appendChild(img);
+      }
+    })();
+
+    if (openReals) openReals.addEventListener("click", openRealisations);
+    if (closeReals) closeReals.addEventListener("click", closeRealisations);
+
+    // close if click outside
+    if (realModal){
+      realModal.addEventListener("click", (e)=>{
+        if (e.target === realModal) closeRealisations();
+      });
+    }
+
+    // close with ESC
+    document.addEventListener("keydown", (e)=>{
+      if (e.key === "Escape" && realModal && realModal.style.display === "flex"){
+        closeRealisations();
+      }
+    });
+
+    // start hidden
+    if (realModal) {
+      realModal.style.display = "none";
+      realModal.setAttribute("aria-hidden","true");
+    }
+
+
 
     // start hidden
     closeModal();
