@@ -642,8 +642,7 @@ Délais%20souhaités:%0A%0A
 Merci!">
     📝 <span data-i18n="btnQuote">Soumission</span>
   </a>
-</div>
-    
+</div>    
 
         <div class="punch" data-i18n="punch">
           Soumission rapide. Travail bien fait.
@@ -890,12 +889,10 @@ Merci!">
     const REALISATIONS_COUNT = 12;         // ex: 12 ou 30
     const REALISATIONS_EXT = "jpg";        // "jpg" ou "png" ou "webp"
     const REALISATIONS_PATH = "images";    // dossier
-
     const realModal = document.getElementById("realModal");
     const openReals = document.getElementById("openRealisations");
     const closeReals = document.getElementById("closeRealisations");
     const realGallery = document.getElementById("realGallery");
-
     function openRealisations(){
       if (!realModal) return;
       realModal.style.display = "flex";
@@ -948,9 +945,7 @@ Merci!">
       realModal.style.display = "none";
       realModal.setAttribute("aria-hidden","true");
     }
-
-
-
+    
     // start hidden
     closeModal();
   </script>
