@@ -965,36 +965,48 @@ Merci!">
     })();
 
     // ===== LIGHTBOX (PHOTO EN GROS) =====
-const lightbox = document.getElementById("imgLightbox");
-const bigImg = document.getElementById("imgBig");
-const closeBtn = document.querySelector(".img-close");
+    // NOTE: le HTML du lightbox est APRES le <script>, donc on initialise après le parsing du DOM.
+    let lightbox = null;
+    let bigImg = null;
+    let closeBtn = null;
 
-function openLightbox(src, alt){
-  bigImg.src = src;
-  bigImg.alt = alt || "";
-  lightbox.style.display = "flex";
-  document.body.style.overflow = "hidden";
-}
+    window.addEventListener("DOMContentLoaded", () => {
+      lightbox = document.getElementById("imgLightbox");
+      bigImg = document.getElementById("imgBig");
+      closeBtn = document.querySelector(".img-close");
 
-function closeLightbox(){
-  lightbox.style.display = "none";
-  bigImg.src = "";
-  document.body.style.overflow = "";
-}
+      if (closeBtn) closeBtn.addEventListener("click", closeLightbox);
 
-if (closeBtn) closeBtn.addEventListener("click", closeLightbox);
+      if (lightbox){
+        lightbox.addEventListener("click", (e)=>{
+          // fermer seulement si on clique sur le fond (pas sur l'image)
+          if (e.target === lightbox) closeLightbox();
+        });
+      }
 
-if (lightbox){
-  lightbox.addEventListener("click", (e)=>{
-    if (e.target === lightbox) closeLightbox();
-  });
-}
+      document.addEventListener("keydown", (e)=>{
+        if (e.key === "Escape" && lightbox && lightbox.style.display === "flex"){
+          closeLightbox();
+        }
+      });
+    });
 
-document.addEventListener("keydown", (e)=>{
-  if (e.key === "Escape" && lightbox && lightbox.style.display === "flex"){
-    closeLightbox();
-  }
-});
+    function openLightbox(src, alt){
+      if (!lightbox || !bigImg) return;
+      bigImg.src = src;
+      bigImg.alt = alt || "";
+      lightbox.style.display = "flex";
+      lightbox.setAttribute("aria-hidden","false");
+      document.body.style.overflow = "hidden";
+    }
+
+    function closeLightbox(){
+      if (!lightbox || !bigImg) return;
+      lightbox.style.display = "none";
+      lightbox.setAttribute("aria-hidden","true");
+      bigImg.src = "";
+      document.body.style.overflow = "";
+    }
 
     
 
