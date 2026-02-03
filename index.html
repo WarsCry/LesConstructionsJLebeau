@@ -958,9 +958,45 @@ Merci!">
         img.src = `${REALISATIONS_PATH}/projetJL${i}.${REALISATIONS_EXT}`;
         img.alt = `Projet JL ${i}`;
         img.onerror = () => { img.style.display = "none"; }; // hide missing
+        // 👇 click = ouvrir en gros
+        img.addEventListener("click", () => openLightbox(img.src, img.alt));
         realGallery.appendChild(img);
       }
     })();
+
+    // ===== LIGHTBOX (PHOTO EN GROS) =====
+const lightbox = document.getElementById("imgLightbox");
+const bigImg = document.getElementById("imgBig");
+const closeBtn = document.querySelector(".img-close");
+
+function openLightbox(src, alt){
+  bigImg.src = src;
+  bigImg.alt = alt || "";
+  lightbox.style.display = "flex";
+  document.body.style.overflow = "hidden";
+}
+
+function closeLightbox(){
+  lightbox.style.display = "none";
+  bigImg.src = "";
+  document.body.style.overflow = "";
+}
+
+if (closeBtn) closeBtn.addEventListener("click", closeLightbox);
+
+if (lightbox){
+  lightbox.addEventListener("click", (e)=>{
+    if (e.target === lightbox) closeLightbox();
+  });
+}
+
+document.addEventListener("keydown", (e)=>{
+  if (e.key === "Escape" && lightbox && lightbox.style.display === "flex"){
+    closeLightbox();
+  }
+});
+
+    
 
     if (openReals) openReals.addEventListener("click", openRealisations);
     if (closeReals) closeReals.addEventListener("click", closeRealisations);
