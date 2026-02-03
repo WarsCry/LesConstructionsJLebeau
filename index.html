@@ -665,20 +665,9 @@
   </a>
 
   <!-- SOUMISSION (CTA principal) -->
-  <a class="btn primary"
-     href="mailto:lesconstructionsjlebeau@gmail.com
-?subject=Demande%20de%20soumission
-&body=Bonjour%20JLebeau,%0A%0A
-Type%20de%20travaux:%20Revêtement%20extérieur%0A
-Type%20de%20revêtement:%20(Vinyle,%20CanExel,%20Fibrociment,%20Autre)%0A
-Surface%20approximative%20(pieds%20carrés):%0A
-Adresse%20ou%20ville:%0A
-Téléphone:%0A
-Photos%20(jointes):%0A
-Délais%20souhaités:%0A%0A
-Merci!">
-    📝 <span data-i18n="btnQuote">Soumission</span>
-  </a>
+  <a id="quoteLink" class="btn primary" href="#">
+  📝 <span data-i18n="btnQuote">Soumission</span>
+</a>
 </div>    
 
         <div class="punch" data-i18n="punch">
@@ -815,7 +804,19 @@ Merci!">
         btnQuote: "Soumission",
         realBtn: "Sois pas gêné — viens voir mes réalisations",
         realTitle: "Mes réalisations",
+        quoteSubject: "Demande de soumission",
+        quoteBody:
+        `Bonjour JLebeau,
 
+        Type de travaux:
+        Type de revêtement:
+        Surface approximative (pieds carrés):
+        Adresse ou ville:
+        Téléphone:
+        Photos (jointes):
+        Délais souhaités:
+
+        Merci!`,
       },
       
       en: {
@@ -861,8 +862,34 @@ Merci!">
         btnQuote: "Get a quote",
         realBtn: "Don’t be shy — check my work",
         realTitle: "My projects",
+        quoteSubject: "Quote request",
+        quoteBody:
+        `Hello JLebeau,
+
+        Type of work:
+        Siding type:
+        Approx. area (sq ft):
+        Address or city:
+        Phone:
+        Photos (attached):
+        Desired timeline:
+
+        Thank you!`,
       }
     };
+
+    const quoteLink = document.getElementById("quoteLink");
+
+    function updateQuoteLink(lang){
+    if (!quoteLink) return;
+
+    const t = dict[lang] || dict.fr;
+
+  quoteLink.href =
+    "mailto:" + COMPANY_EMAIL +
+    "?subject=" + encodeURIComponent(t.quoteSubject) +
+    "&body=" + encodeURIComponent(t.quoteBody);
+}
 
     function applyLang(lang){
       const t = dict[lang] || dict.fr;
@@ -871,6 +898,7 @@ Merci!">
       document.querySelectorAll("[data-i18n]").forEach(el=>{
         const key = el.getAttribute("data-i18n");
         if (t[key]) el.textContent = t[key];
+        updateQuoteLink(lang);
       });
 
       // modal texte
