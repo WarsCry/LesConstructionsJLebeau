@@ -557,6 +557,36 @@
       .real-gallery img:hover{ transform:none; }
     }
 
+    /* ===== LIGHTBOX PHOTO ZOOM ===== */
+.img-lightbox{
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,.92);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 100000;
+  padding: 20px;
+  cursor: zoom-out;
+}
+
+.img-lightbox img{
+  max-width: 95vw;
+  max-height: 92vh;
+  border-radius: 14px;
+  box-shadow: 0 25px 70px rgba(0,0,0,.9);
+}
+
+.img-close{
+  position: absolute;
+  top: 20px;
+  right: 28px;
+  font-size: 42px;
+  font-weight: 900;
+  color: white;
+  cursor: pointer;
+}
+
   </style>
 </head>
 
@@ -958,5 +988,10 @@ Merci!">
     // start hidden
     closeModal();
   </script>
+  <!-- LIGHTBOX PHOTO -->
+<div id="imgLightbox" class="img-lightbox" aria-hidden="true">
+  <span class="img-close">×</span>
+  <img id="imgBig" src="" alt="">
+</div>
 </body>
 </html>
